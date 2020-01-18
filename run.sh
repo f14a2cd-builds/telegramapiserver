@@ -3,5 +3,5 @@
 if [[ $? -ne 1 ]]; then
 	exit
 else
-	php /telegram/server.php
+	php /telegram/server.php -s session
 fi

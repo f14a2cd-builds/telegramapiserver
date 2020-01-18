@@ -1,9 +1,7 @@
 FROM ubuntu:latest
 RUN sed -i 's/archive.ub/ru.archive.ub/g' /etc/apt/sources.list
 RUN apt update && apt upgrade -f -y &&  apt install software-properties-common wget curl -f -y
-#COPY ppa.list /etc/apt/sources.list.d/ondrej-php.list
 RUN add-apt-repository ppa:ondrej/php -y -u
-#RUN wget --spider -S http://ppa.launchpad.net/ondrej/php/ubuntu/dists/bionic/InRelease
 RUN apt update && apt install -f -y php7.4-bcmath php7.4-bz2 php7.4-intl php7.4-gd php7.4-mbstring php7.4-mysql php7.4-cli php7.4-zip -f -y
 RUN apt install git php7.4-xml -f -y
 RUN apt purge apache2 -f -y

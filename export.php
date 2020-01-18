@@ -9,6 +9,14 @@ Username and password for proxy is not required if it\'s not set.
 ');
 exit(0);
 }
+if (!file_exists("/telegram/sessions/lockfile")) {
+	echo "Did you mounted your 'madeline session' directory?".PHP_EOL;
+	echo "BE DANGEROUS! IF YOU DIDN'T MOUNTED DIRECTORY IN DOCKER IMAGE, YOU WILL LOSE YOUR SESSION AFTER TERMINATE OR SHUTDOWN THIS DOCKER IMAGE.".PHP_EOL;
+	echo "DON'T BE LOSE! USE '-v' ARGUMENT WHEN RUN YOUR DOCKER IMAGE!".PHP_EOL;
+	sleep(5);
+	mkdir("/telegram/sessions/");
+	file_put_contents("/telegram/sessions/lockfile","");
+}
 $export['api_id'] = $_SERVER['api_id'];
 $export['api_hash'] = $_SERVER['api_hash'];
 $export['listen'] = (isset($_SERVER['listen'])&&!empty($_SERVER['listen']))?$_SERVER['listen']:9537;
